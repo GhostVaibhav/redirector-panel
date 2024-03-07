@@ -1,0 +1,40 @@
+name: Build site and deploy
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    environment: Env
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Installing dependencies
+      run: npm install
+    - name: Setting up Git
+      run: |
+          git remote set-url origin https://GhostVaibhav:${{ secrets.PASS }}@github.com/GhostVaibhav/redirector-panel.git
+          git config --global user.email "48472541+GhostVaibhav@users.noreply.github.com"
+          git config --global user.name "Vaibhav Sharma"
+    - name: Writing to environment variable
+      run: |
+          touch .env
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
+    - name: Building and deploying the site
+      run: |
+          npm install gh-pages --save-dev
+          npm run build
+          npm run deploy
