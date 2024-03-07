@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function App() {
   const [url, seturl] = useState("")
+  const { id } = useParams();
 
   useEffect(() => {
     async function execute() {
-      const id = window.location.pathname.slice(1, 7);
       await fetch(process.env.REACT_APP_API_URL + "/" + id)
         .then(response => response.json())
         .then(data => {
