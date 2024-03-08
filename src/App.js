@@ -6,8 +6,10 @@ function App() {
   const { id } = useParams();
 
   useEffect(() => {
+    console.log(id);
     async function execute() {
-      await fetch(process.env.REACT_APP_API_URL + "/" + id)
+      const api_url = process.env.REACT_APP_API_URL;
+      await fetch(api_url + "/" + id)
         .then(response => response.json())
         .then(data => {
           seturl(data.redirect_to);
