@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 function App() {
   const [url, seturl] = useState("")
-  const { id } = useParams();
+  let id = window.location.pathname.slice(1, 7);
 
   useEffect(() => {
-    console.log(id);
     async function execute() {
-      const api_url = process.env.REACT_APP_API_URL;
-      await fetch(api_url + "/" + id)
+      await fetch(process.env.REACT_APP_API_URL + "/" + id)
         .then(response => response.json())
         .then(data => {
           seturl(data.redirect_to);
@@ -21,9 +18,9 @@ function App() {
     execute();
   });
 
-  if(url !== "")
+  if (url !== "")
     window.location.href = url;
-  
+
   return (
     <>
 
