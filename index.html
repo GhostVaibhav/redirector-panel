@@ -34,7 +34,10 @@
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        window.location.href = data.redirect_to;
+        if(data.redirect_to.startsWith("http") || data.redirect_to.startsWith("https"))
+          window.location.href = data.redirect_to;
+        else
+          window.location.href = "http://" + data.redirect_to;
       })
   </script>
 </body>
