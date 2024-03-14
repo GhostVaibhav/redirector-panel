@@ -30,7 +30,12 @@
 <body>
   <script>
     const id = window.location.pathname;
-    console.log("https://he69kwm9m6.execute-api.ap-south-1.amazonaws.com/redirect" + id);
+    const url = "https://he69kwm9m6.execute-api.ap-south-1.amazonaws.com/redirect" + id;
+    await fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        window.location.href = data.redirect_to;
+      })
   </script>
 </body>
 
