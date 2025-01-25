@@ -19,6 +19,12 @@ function App() {
       await fetch(process.env.REACT_APP_API_URL, requestOptions)
         .then((response) => response.json())
         .then((data) => {
+          if (
+            !data.redirect_to.startsWith("https") &&
+            !data.redirect_to.startsWith("http")
+          ) {
+            data.redirect_to = `https://${data.redirect_to}`;
+          }
           window.location.href = data.redirect_to;
         })
         .catch((error) => {
