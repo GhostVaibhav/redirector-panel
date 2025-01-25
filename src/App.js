@@ -22,7 +22,6 @@ function App() {
           window.location.href = data.redirect_to;
         })
         .catch((error) => {
-          console.log("Error fetching data from the server: " + url);
           console.log(error);
         });
     }
