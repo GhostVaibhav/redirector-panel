@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [url, seturl] = useState("");
   const id = window.location.pathname;
 
   useEffect(() => {
@@ -29,9 +28,7 @@ function App() {
     }
 
     execute();
-  });
-
-  if (url !== "") window.location.href = url;
+  }, [id]);
 
   return <></>;
 }
