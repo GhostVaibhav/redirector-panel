@@ -20,7 +20,7 @@ function App() {
       await fetch(process.env.REACT_APP_API_URL, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          seturl(data.redirect_to);
+          window.location.replace(data.redirect_to);
         })
         .catch((error) => {
           console.log("Error fetching data from the server: " + url);
