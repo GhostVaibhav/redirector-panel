@@ -7,7 +7,7 @@ function App() {
   useEffect(() => {
     async function execute() {
       const data = {
-        code: id,
+        code: id.substring(1),
       };
       const requestOptions = {
         method: "GET",
