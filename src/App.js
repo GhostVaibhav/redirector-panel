@@ -25,7 +25,7 @@ function App() {
           ) {
             data.redirect_to = `https://${data.redirect_to}`;
           }
-          window.location.href = data.redirect_to;
+          window.location.replace(data.redirect_to);
         })
         .catch((error) => {
           console.log(error);
