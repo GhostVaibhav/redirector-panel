@@ -10,7 +10,7 @@ function App() {
         code: id.substring(1),
       };
       const requestOptions = {
-        method: "GET",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           "x-api-key": process.env.REACT_APP_API_KEY,
